@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">">
+    <title>Quote Generator</title>
+</head>
+<body>
+    <div class="quote-box">
+        <h2>Quote of the day</h2>
+        <blockquote></blockquote>
+        <span>Loading...</span>
+        <div> <button onclick="getQuote(apiUrl)">New Quote</button>
+        <button onclick="tweet()"> <img src="/image/sl_z_072523_61700_05.jpg" >Tweet</button></div>
+       
+    </div>
+    <script>
+        const apiUrl="https://api.quotable.io/random";
+
+        const quote=document.querySelector("blockquote")
+        const author=document.querySelector("span")
+
+        async function getQuote (url)
+
+        {
+            const response=await fetch(url)
+            var data=await response.json();
+            quote.innerHTML=data.content;
+            author.innerHTML=data.author;
+        }
+        getQuote(apiUrl)
+
+const twitter="https://twitter.com/intent/tweet?text="+quote.innerHTML;
+ function tweet()
+{
+    window.open("https://twitter.com/intent/tweet?text="+quote.innerHTML+"      "+"----"+ author.innerHTML )
+}
+    
+    </script>
+</body>
+</html>
